@@ -4,10 +4,10 @@
 
 Turn a photo into a museum-style multi-layer registration stamp — as a finished stamp alone, or as a step-by-step proof sheet that follows real block-printing logic.
 
-| 原片 Source | 中性成品 Neutral | 步骤图 Steps |
+| 原片 Source | 成图 Finished | 步骤图 Steps |
 |---|---|---|
-| ![source](examples/naha-source.jpg) | ![neutral](examples/naha-master.png) | ![steps](examples/naha-steps.png) |
-| 2025年夏那霸琉球装束体验 | 默认：真实橡皮章墨质感 | 2×2 分版过程 |
+| ![source](examples/naha-source.jpg) | ![master](examples/naha-master.png) | ![steps](examples/naha-steps.png) |
+| 2025年夏那霸琉球装束体验 | 本例抽中中性（非固定绑定） | 2×2 分版过程 |
 
 ## 三种风格 Three styles
 
@@ -21,18 +21,26 @@ Turn a photo into a museum-style multi-layer registration stamp — as a finishe
 三个维度都可以显式指定，不指定则按默认规则随机：
 
 - **输出形态**：`finished stamp`（只出一枚成品）或 `step by step proof sheet`（分版步骤图，**默认**）。
-- **风格**：`干性 / 中性 / 油性`。不指定时按 **2 : 6 : 2** 抽签。
+- **风格**：`干性 / 中性 / 油性`。**对两种输出形态都生效——单独一张成品并不默认中性**，不指定时同样按 **2 : 6 : 2** 抽签。
 - **方向**：`正方形 / 竖长方形 / 横长方形`。不指定时 70% 方形、30% 非方形（竖图出竖版、横图出横版）。
 
 Three dials, each overridable; anything left unspecified falls back to a random roll:
 
 - **Output**: `finished stamp` (one finished print) or `step by step proof sheet` (**default**).
-- **Style**: `Dry / Neutral / Oily`. Unspecified → drawn at **2 : 6 : 2**.
+- **Style**: `Dry / Neutral / Oily`. **Applies to BOTH output modes — a single finished stamp is NOT bound to Neutral**; unspecified → drawn at **2 : 6 : 2** all the same.
 - **Orientation**: `square / portrait / landscape`. Unspecified → 70% square, 30% non-square following the photo.
 
 三者可自由组合，例如：「横版，油性，只要成品」「干性步骤图」「竖版中性」。
 
 Combine freely: "landscape, oily, finished stamp only" · "dry proof sheet" · "portrait neutral".
+
+### 示例所用模式组合 Example mode combos
+
+| 示例 Example | 模式组合 Mode combo |
+|---|---|
+| 上方三联图 triptych above | proof sheet · 中性 Neutral · 方形 square |
+| 风格表·干性 style table · Dry | finished stamp · 干性 Dry · 方形 square |
+| 风格表·油性 style table · Oily | finished stamp · 油性 Oily · 方形 square |
 
 ## 安装 Install
 
