@@ -88,6 +88,22 @@ Hints for contributors: strengthen the NOT-list against material residue; feed t
 
 **Guzi2005** — 最好是能帮到你
 
+与 **WorkBuddy AI**（CodeBuddy 智能体）协作开发：全部提示词工程、流程验证与迭代由 AI 完成，方向判断与审美定稿由人类作者把关。
+
+Co-developed with **WorkBuddy AI** (the CodeBuddy agent): prompt engineering, pipeline verification and iteration by the AI; direction calls and final aesthetic judgment by the human author.
+
+## 致谢 Acknowledgements
+
+本 skill 的诞生站在两个前作的肩膀上，部分风格规则（画面边缘处理、照片→手账感转换）受其启发，推荐一并食用：
+
+- **[make-tape-collage](https://github.com/sherlyryn/make-tape-collage)** — 纸胶带拼贴 skill；
+- **[travel-memory-sticker-card](https://github.com/carolinaaafy/travel-memory-sticker-card)** — 旅行手账贴纸卡 skill。
+
+This skill stands on the shoulders of two prior works — some style rules (edge treatment, photo-to-journal feel) were inspired by them:
+
+- **[make-tape-collage](https://github.com/sherlyryn/make-tape-collage)** — paper-tape collage skill;
+- **[travel-memory-sticker-card](https://github.com/carolinaaafy/travel-memory-sticker-card)** — travel journal sticker-card skill.
+
 ## 许可证 License
 
 [MIT](LICENSE) · 示例图片均来自作者本人的照片。
