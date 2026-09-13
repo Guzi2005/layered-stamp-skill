@@ -54,12 +54,18 @@ Work autonomously through all steps; stop only if image generation is unavailabl
 
 ## Style presets / 风格预设
 
-Default style is **中性 (Neutral)**: translucent rubber-stamp ink, grainy streaky fills, hard clean edges, subtle misregistration, realistic overprint.
+Three styles are available: **中性 (Neutral)** — default; **干性 (Dry)**; **油性 (Oily)**.
 
-Users may request two alternate styles by saying 干性 or 油性. Inject the corresponding paragraph at the start of the master prompt and carry its texture into the chained step cells:/n/n- **干性 (Dry)**: screen-print / dry-roller look. Fills are visibly built from a regular **halftone dot screen** (70-100 lpi) on top of a faint **silkscreen mesh/grid texture**; lots of bare-paper specks and thin streaks where the ink ran out; dusty, muted tones; edges are broken, chalky and slightly starved. No soft watercolor edges, no glossy wetness. Keep shapes, knockout voids and overprint logic exactly as in Neutral.
+**Style selection rule**: if the user explicitly names a style (干/中/油, or Dry/Neutral/Oily), always honor it. If unspecified, roll once per job at ratio **干性 : 中性 : 油性 = 2 : 6 : 2** (draw a number 1-10: 1-2 = Dry, 3-8 = Neutral, 9-10 = Oily), then announce the drawn style in the reply before generating.
+
+**中性 (Neutral)**: translucent rubber-stamp ink, grainy streaky fills, hard clean edges, subtle misregistration, realistic overprint.
+
+Inject the chosen style's paragraph at the start of the master prompt and carry its texture into the chained step cells:
+
+- **干性 (Dry)**: screen-print / dry-roller look. Fills are visibly built from a regular **halftone dot screen** (70-100 lpi) on top of a faint **silkscreen mesh/grid texture**; lots of bare-paper specks and thin streaks where the ink ran out; dusty, muted tones; edges are broken, chalky and slightly starved. No soft watercolor edges, no glossy wetness. Keep shapes, knockout voids and overprint logic exactly as in Neutral.
 - **油性 (Oily)**: thick wet ink with strong covering power. Fills are dense, saturated and more opaque; each shape edge carries a soft **wet-ink halo** (darker pigment pool, 2-4 mm) with slight feather; add **1-2 accidental wet-smudge marks** — short dragged streaks or fingerprint-like smears at a lower edge where still-wet ink was touched before drying. Subtle waxy/oily sheen, but NO glossy digital shine; no paper-cut. Keep shapes, knockout voids and overprint logic as in Neutral.
 
-Style can be combined with orientation and any explicit user override.
+The style can be combined with orientation; any explicit user override always wins over the roll.
 
 **Medium: flat ink, NOT paper cut (hard rule — verified failure mode)**: the most dangerous style drift is 剪纸/paper-craft: layered cut paper with drop shadows, visible paper thickness, felt/cardstock relief. Prevent by (a) always stating the medium positively — "flat printing ink overprinted on warm paper, like a real multi-block woodblock or rubber-stamp overprint" — and (b) an explicit NOT-list: "ABSOLUTELY NOT paper cut, NOT layered paper art, NOT collage, NOT felt craft: no drop shadows under any shape, no visible paper thickness, no physical stacking or depth between color layers, no scissors-cut cardstock edges, no 3D paper relief. Every shape lies on ONE single paper plane; overlapping inks simply darken." Mere "flat geometric shapes" is NOT enough — paper-texture vocabulary actively pulls the model toward paper collage unless the NOT-list is present. Check Stage A first: if the master drifts to paper-cut, Stage B inherits it.
 

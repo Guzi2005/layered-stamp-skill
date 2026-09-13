@@ -15,7 +15,7 @@
 | ![neutral](examples/naha-master.png) | ![dry](examples/naha-style-dry.png) | ![oily](examples/naha-style-oily.png) |
 | **默认**。半透明橡皮章墨、硬边、轻微叠印、颗粒纹理。Default translucent rubber-stamp ink, hard edges, light overprint, grain. | **更干**。网点/丝网网格、明显缺墨、干辊留白、边缘枯涩，像快没墨时的真实印刷。Halftone dots + screen mesh, ink-starved streaks, broken edges. | **更油**。强覆盖力、边缘有水彩晕染、带 1-2 处未干时抹开的真实湿墨拖痕。Dense coverage, wet-ink halos, 1-2 accidental smudge marks. |
 
-三种风格都支持：直接说「我要干性/油性」即可覆盖默认中性；也可以与横竖方方向参数同时指定。
+三种风格都支持：直接说「我要干性/中性/油性」即可指定；不说的话，每次按 **2 : 6 : 2（干/中/油）** 随机抽签决定。风格也可以与横竖方方向参数同时指定。
 
 ## 它做什么 / What it does
 
@@ -52,6 +52,8 @@ cp -r layered-stamp-skill ~/.claude/skills/museum-stamp-print
 
 - 套色印章 / 套版印刷 / 博物馆印章 / 纪念章 / 分版 / stamp print / block-print seal / registration stamp
 - 加风格：「做一套干性套色印章」「油性的」「要方图」「横版，油性」
+
+风格：默认随机掷签——**干性 : 中性 : 油性 = 2 : 6 : 2**；你一旦点名「干性/中性/油性」，你的选择直接覆盖随机。
 
 方向：默认随机掷签——70% 方形、30% 非方形（竖图出竖版、横图出横版、方图按构图选）；你一旦说「方形/竖版/横版」，你的选择直接覆盖随机。
 
