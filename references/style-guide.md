@@ -86,10 +86,21 @@ The reference standard: real souvenir rubber-stamp prints. NOT watercolor, NOT o
 - Museum-print palette: slightly dusted, print-ink versions of the source colors — saturated but not neon, light but not pastel-washed.
 - One small accent may be punchier than the rest (e.g. a vermilion detail on a muted scheme).
 
+## Style presets / 风格预设
+
+Default: **中性 (Neutral)** — the reference described above: translucent rubber-stamp ink, grainy streaky fills, hard edges, real overprint, slight misregistration.
+
+**干性 (Dry)**: screen-print / dry-roller. Fills are visibly built from a regular **halftone dot screen** (70-100 lpi) over a faint **silkscreen mesh/grid texture**; lots of bare-paper specks and thin streaks where the ink ran out; dusty, muted tones; broken, chalky edges. No soft watercolor edges, no glossy wetness.
+
+**油性 (Oily)**: thick, wet, strongly covering ink. Denser, more opaque fills; each shape edge carries a soft **wet-ink halo** (darker pigment pool, 2-4 mm) with slight feather; **1-2 accidental wet-smudge marks** — short dragged streaks or fingerprint-like smears at a lower edge where still-wet ink was touched before drying. Subtle waxy/oily sheen, but NO glossy digital shine.
+
+All three keep the same knockout-void logic, the same shapes, and the same step sequence; only the ink surface changes.
+
 ## Avoid
 
 - Frames, borders, rounded-corner seals, black outlines around the print — real registration proofs have no drawn frame.
-- Gradients, airbrush softness, glossy 3D, anime, watercolor in ANY form (blooms, bleeds, washes, granulation), soft blended overlaps, pastel averaging where colors meet, photographic texture.
+- Gradients, airbrush softness, glossy 3D, anime, pastel averaging where colors meet, photographic texture.
+- Uncontrolled watercolor in Neutral/Dry styles: no blooms, bleeds, washes, granulation. (Oily deliberately uses controlled wet-ink halos and smudge marks.)
 - Detailed windows, brick courses, leaf veins, fabric folds, anatomy — structure via shape edges and sparse dashes only.
 - Extra text, logos, serial numbers, museum names, decorative pseudo-writing; distressed or illegible lettering.
 - Perfect alignment in the finished print (kills the block-print feel) and watermarks.
