@@ -68,9 +68,9 @@ Only Python 3 + Pillow is needed for the final layout step (`pip install Pillow`
 
 Generating all four cells in one shot kept breaking step logic (subjects appearing early, same-pull colors mixing, the finished print copied into every cell), so the verified route is a deterministic chain: master first from the source photo, then cells derived one by one (each cell = previous cell + exactly one new block), finally composed with Pillow — only layout is code, the printing itself is all generation.
 
-步骤逻辑严格遵守真实套色印章：半透明叠印（跨版压色变深）、挖空留白（前景版盖进预留空白）、一版一步（版内颜色只并置不混）、收官跳变（最后一格同时上纹样细节 + 轮廓线 + 文字）。人物规则：背影无脸，正面只给极简概括五官。
+步骤逻辑严格遵守真实套色印章：半透明叠印（跨版压色变深）、挖空留白（前景版盖进预留空白）、一版一步（版内颜色只并置不混）、收官跳变（最后一格同时上纹样细节 + 轮廓线 + 文字）。人物规则：背影无脸，正面只给极简概括五官。成品底部文字优先用被动式印刷语，如 `PRINTED IN NAHA · 2026.09.14`，无地名的记忆照可用 `STAMPED IN MEMORY · 2026.09.14`。
 
-Step logic follows real registration stamps: translucent overprint across blocks (overlaps darken), knockout voids reserved for foreground blocks, one block per step (colors within a pull butt, never mix), and a big final jump (pattern details + keyline + text together). Figures: no face from behind; minimal generalized features from the front.
+Step logic follows real registration stamps: translucent overprint across blocks (overlaps darken), knockout voids reserved for foreground blocks, one block per step (colors within a pull butt, never mix), and a big final jump (pattern details + keyline + text together). Figures: no face from behind; minimal generalized features from the front. The bottom text prefers passive-voice printmaking wording, e.g. `PRINTED IN NAHA · 2026.09.14`, or `STAMPED IN MEMORY · 2026.09.14` for place-less memory photos.
 
 ## 已知不足 Known limitations
 

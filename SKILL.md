@@ -39,7 +39,12 @@ Work autonomously through all steps; stop only if image generation is unavailabl
 
 ## Text strip
 
-- Inside the finished print near its bottom: place name in small capitals and the date, e.g. `NAHA · 2026.09.14`, set in a **vintage postal-cancellation style** (邮戳风): slightly condensed serif or stamp-engraved letterforms, unevenly inked with light patchy fade like a partially worn rubber postmark, occasional tiny ink gaps inside strokes, baseline very slightly wobbling. Still perfectly legible and misspelling-free — "worn postmark", not distressed grunge. Exact user wording overrides; omit the place name if uncertain, keep the date.
+- Inside the finished print (the FINAL cell) near its bottom: short English copy in small capitals + the date, set in a **vintage postal-cancellation style** (邮戳风): slightly condensed serif or stamp-engraved letterforms, unevenly inked with light patchy fade like a partially worn rubber postmark, occasional tiny ink gaps inside strokes, baseline very slightly wobbling. Still perfectly legible and misspelling-free — "worn postmark", not distressed grunge.
+- **Copy library — prefer passive-voice printmaking wording** (real rubber stamps and postmarks read passive). Pick ONE short line, postmark-sized:
+  - With a place: `PRINTED IN NAHA · 2026.09.14` · `HAND-STAMPED AT NAHA · 2026.09.14` · `PULLED BY HAND · NAHA · 2026.09.14`
+  - No place / memory photo: `STAMPED IN MEMORY · 2026.09.14` · `PRINTED FROM CHILDHOOD · 2026.09.14` · `KEPT IN INK · 2026.09.14`
+  - Bare minimum fallback: `NAHA · 2026.09.14`
+- Exact user wording always overrides; omit the place name if uncertain, keep the date.
 
 ## Layer system (flexible)
 
