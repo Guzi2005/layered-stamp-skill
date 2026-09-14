@@ -17,7 +17,9 @@ Work autonomously through all steps; stop only if image generation is unavailabl
 2. Extract: one identification anchor (the element that says WHERE/WHAT this is), the composition arrangement (keep it faithful), the light direction, and 5-6 dominant color families.
 3. Decide the text content: place name (user-supplied, or the most confidently recognized location; otherwise omit) and date (today by default, format `YYYY.MM.DD`; user override wins).
 4. Read [references/style-guide.md](references/style-guide.md) for the layer system, registration, and figure rules.
-5. **Roll the orientation** (see Sheet layout), then shape the prompt with the skeleton below and generate. **Step sheets: use the DETERMINISTIC CHAIN ROUTE (verified — replaces whole-sheet-at-once routes, which kept violating step logic: subjects stamped steps early, blocks split across steps, same-pull colors mixed)**:
+5. **Roll the orientation** (see Sheet layout), then pick the proof-sheet MODE, then shape the prompt with the matching skeleton (see [Proof-sheet modes](#proof-sheet-modes)). Both modes share the **PER-CELL INVENTORY TEMPLATE** below — never use delta phrasing ("same as previous + X") because the model drops carried-forward elements (verified 2026-09-14, dog photo: cell 3 lost the dog). Always enumerate ALL elements each cell contains.
+   - **Mode A — single-shot 2×2 (default for scenes with figures or foreground subjects that must carry forward)**: ONE prompt, ONE image, hard-coded 2×2 grid with each cell's full inventory listed, the finished master as `image1` for style anchoring. Cheapest, most consistent, no chain drift.
+   - **Mode B — chained one-cell-at-a-time (only for abstract scenes with NO figures / NO foreground subjects)**: Stage A master, Stage B chain one cell at a time, Stage C Pillow compose. Drifts on figures; safe for pure color-block scenes (e.g. Okinawa landscape).
    - **Stage A — master**: generate the finished single stamp from the source photo (`image1`=photo), in the ROLLED orientation. This becomes the LAST cell.
    - **Stage B — chain one cell at a time**: cell 1 = edit the master with "show ONLY the base block — remove everything else" (`image1`=master); cell k = edit cell k-1 with "keep everything exactly as it is, stamp ONE more block: [layer]" (`image1`=cell k-1). **Master-anchor rule (verified 2026-09-14, dog photo): plain "keep everything" chains STILL drift cumulatively — steps ended up deviating from the source, from each other and from the finished print. ALWAYS pass the finished master as `image2` in EVERY chained cell** ("copied EXACTLY from image 2 — same position, same size, same silhouette"), and name concrete geometric anchors in every prompt (horizon height, wall edges, ladder angle, margins, void positions/scales). Each prompt names the one block and restates the mixing rule (translucent mixing only against EARLIER layers; within one pull colors butt or knock out). Every cell generated in the SAME size/orientation as the master.
    - **Stage C — compose with Pillow** (printing is real generation; only layout is code): per-row-sample fill each cell's bottom-right watermark; crop each cell to its print region (explicit crop boxes after visual inspection — chained cells drift in margin size, normalize so prints read the same scale); pad to the MASTER'S aspect ratio (not always square) with each cell's own paper color; paste 2x2 on a paper-colored sheet (sheet aspect follows the master's orientation) with subtle noise; draw numerals (serif bold) outside each cell's upper-left corner and 4 sheet-corner registration crosses with PIL. No arrows.
@@ -26,6 +28,81 @@ Work autonomously through all steps; stop only if image generation is unavailabl
    - **Legacy whole-sheet routes (fallback only — they violate step logic; keep for their verified lessons)**: generating the single stamp with `image1`=photo traces contours far better than text alone. Whole-sheet generation with the master as `image1` tends to COPY the finished print into most cells — accumulation is unreliable and breaks at row transitions; numerals misprint near the end. Phrasings that help: "ACCUMULATION IS CRITICAL: … never show the finished scene early" with a nearly-empty cell 1, "the text appears ONLY in the last cell", negative space ("the ENTIRE UPPER HALF of cell 2 is STILL EMPTY paper"). Even the simplified 4-step 2x2 still merges adjacent low-contrast steps. TEXT-ONLY whole-sheet accumulates more reliably but traces contours loosely, and with `image1`=photo some cells render photographically.
 6. Watermark-check BOTH stages (bottom-right corner): image platforms often stamp a faint watermark there. If it shares the bottom band with numerals/marks that must survive, ERASE it by filling the watermark rectangle with paper color plus slight noise (Python/Pillow) instead of cropping; otherwise crop. **Fill-color lesson (verified)**: never sample paper color from a distant corner — sample PER-ROW from the pixels immediately LEFT of the fill region and use their median; a single global sample leaves a visibly mismatched rectangular patch. Save under a clean filename and delete the watermarked original.
 7. Quality-check the sheet (see below). Regenerate once if needed.
+
+## Proof-sheet modes
+
+The mode is chosen once at the top of a run, BEFORE writing any prompt. It does not change between cells.
+
+### Mode A — single-shot 2×2 (default for scenes with figures or foreground subjects)
+
+ONE prompt, ONE image. The finished master is generated separately first (`image1`=source photo, in the rolled orientation) and is then used as `image1` of the single-shot proof-sheet prompt so the four cells inherit its ink character and palette without being forced to copy it.
+
+The single-shot prompt is written strictly in PER-CELL INVENTORY form. Each cell section enumerates **EVERY element present in that cell** (geometry, blocks, figures, text/no-text). The template is mandatory — never write "same as previous + X" because the model will drop the carry-forward (verified 2026-09-14, dog photo: cell 3 lost the dog from cell 2).
+
+```
+[A 2×2 PROOF SHEET on warm off-white paper: exactly FOUR stamp impressions of
+the SAME print arranged in a 2x2 grid, equal size, equal margins, numbered 1 2
+3 4. Each impression is a SINGLE flat image — no sub-panels, no variations,
+no repeated mini-images, no comparison strips. All four impressions share
+EXACTLY the same composition, geometry and scale; only the ink accumulation
+differs. The scene: <one-line description anchored to image1>.]
+
+Impression 1 — FIRST PULL, under-blocks only:
+  contains exactly:
+  - <list every under-block present: ground, wall, ladder rails, rungs, etc.>
+  - <reserved WHITE silhouettes, if any, with their positions and sizes>
+  ABSOLUTELY NO <explicit negative list: no figures, no collar, no keyline,
+  no text>.
+
+Impression 2 — Cell 1 + <block name>:
+  contains EVERY element from Cell 1, in the SAME positions and SAME colors.
+  PLUS: <the new block, with exact silhouette, color, position, scale>.
+  ABSOLUTELY NO <negative list: e.g. no other figure, no collar yet, no
+  keyline, no text>.
+
+Impression 3 — Cell 2 + <block name>:
+  contains EVERY element from Cell 2 UNCHANGED (re-list them, do not rely
+  on "same as 2").
+  PLUS: <new block>.
+  ABSOLUTELY NO <negative list>.
+
+Impression 4 — FINAL, big detail block over Cell 3:
+  contains EVERY element from Cell 3 UNCHANGED.
+  PLUS: <all detail marks: collars, leashes, pattern accents, ladder rungs,
+  keyline dashes, etc.>
+  PLUS: the text '<chosen postmark line>' in vintage worn
+  postal-cancellation capitals near the bottom.
+  This is the ONLY impression containing any text.
+
+Ink character (<Neutral / Dry / Oily>): <the style paragraph>.
+Medium reminder: flat printing ink on ONE paper plane — NOT a painting
+(no brushstrokes, no impasto, no canvas), NOT watercolor, NOT paper cut,
+no drop shadows, no thickness, no relief.
+
+Final self-check before drawing:
+  - all four impressions share identical composition and scale
+  - only impression 4 contains any text
+  - every impression has a SINGLE image inside (no sub-panels)
+  - no black frame, no border around the sheet or any impression
+```
+
+After the single-shot returns, run the **post-generation checklist** (below). One regeneration is allowed.
+
+### Mode B — chained one-cell-at-a-time (only for abstract scenes with NO figures)
+
+Stage A generates the finished master. Stage B generates cell 1 by editing the master (remove everything except under-blocks), then cell k by editing cell k-1. Stage C composes the four cells into a 2×2 with Pillow.
+
+The chain's per-prompt delta is rewritten as a **mini inventory** (still short per prompt, but lists what must remain — the previous cell's blocks and silhouettes must be re-named as "keep these: ..." rather than "keep everything"). Cells must use the finished master as `image2` so the model can copy silhouettes back from it.
+
+Chain mode still drifts on figures — use Mode A the moment a foreground subject (person, animal, vehicle, anything that must persist across cells) appears in the scene.
+
+### Post-generation checklist (applies to both modes)
+
+1. **Composition constancy**: the four cells share the same horizon / wall edges / subject positions / scale. If not, the mode failed; switch or regenerate.
+2. **Carry-forward completeness**: every element from cell k-1 is present in cell k at the same position and scale. If an element vanished (e.g. dog gone in cell 3), the inventory was incomplete — list the dropped element EXPLICITLY in every later cell's prompt and regenerate.
+3. **Text discipline**: only the last cell carries text. If cells 1-3 contain text, the "ABSOLUTELY NO text" line was not strong enough — move it to the top of every cell section.
+4. **Single-image per cell**: each cell shows ONE impression. If any cell returns a 2×2 sub-grid, the prompt triggered "before/after" or "variation" mode; prepend "no sub-panels, no variations" at the very top of the prompt.
+5. **Style consistency**: ink character (Neutral / Dry / Oily) reads the same in every cell.
 
 ## Sheet layout (the core)
 
