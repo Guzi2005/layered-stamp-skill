@@ -11,14 +11,20 @@ Turn a photo into a museum-style multi-layer registration stamp — as a finishe
 
 ### 示例 2 · 童年记忆照 Sample 2 · childhood memory
 
-| 成图 Finished | 步骤图 Steps |
-|---|---|
-| ![dog-master](examples/dog-master.png) | ![dog-steps](examples/dog-steps-oily.png) |
-| 童年与外公的大黄狗（抽中油性 + 方形） | 环境 → 双主体 → 红项圈 → 同色加深 + 文字 |
+| 原片 Source | 成图 Finished | 步骤图 Steps |
+|---|---|---|
+| ![dog-source](examples/dog-source.jpg) | ![dog-master](examples/dog-master.png) | ![dog-steps](examples/dog-steps-oily.png) |
+| 童年与外公的大黄狗（私人照片） | 抽中油性 + 方形 | 环境 → 双主体 → 红项圈 → 同色加深 + 文字 |
 
-原片为作者童年私人照片，未随仓库收录；成图底部邮戳用被动印刷语 `PRINTED FROM CHILDHOOD · 2026.09.14`。此例为双主体场景验证：两个前景主体合并在同一印次上墨，末格以「同色油墨再加深一遍」收官（直接要求补勾线会触发模型的去色重绘），文字经 Pillow 代码层修正。
+成图底部邮戳用被动印刷语 `PRINTED FROM CHILDHOOD · 2026.09.14`。此例为双主体场景验证：两个前景主体合并在同一印次上墨，末格以「同色油墨再加深一遍」收官（直接要求补勾线会触发模型的去色重绘），文字经 Pillow 代码层修正。
 
-The source is a private childhood photo and is not included in the repo; the postmark uses passive printmaking wording `PRINTED FROM CHILDHOOD · 2026.09.14`. This example verifies the two-subject pipeline: both foreground subjects share one inking, and the final cell closes with a deepening pass of the SAME inks (asking for added keylines instead triggers the model to drain the colors); the text was corrected at the code layer with Pillow.
+三种墨性形态 Style variants（同一母版换墨性，构图锚定不变）：
+
+| 中性 Neutral | 干性 Dry | 油性 Oily |
+|---|---|---|
+| ![dog-neutral](examples/dog-style-neutral.png) | ![dog-dry](examples/dog-style-dry.png) | ![dog-oily](examples/dog-master.png) |
+
+The postmark uses passive printmaking wording `PRINTED FROM CHILDHOOD · 2026.09.14`. This example verifies the two-subject pipeline: both foreground subjects share one inking, and the final cell closes with a deepening pass of the SAME inks (asking for added keylines instead triggers the model to drain the colors); the text was corrected at the code layer with Pillow. The style variants restyle the same master while the composition stays anchored.
 
 ## 三种风格 Three styles
 
