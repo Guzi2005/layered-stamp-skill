@@ -9,6 +9,17 @@ Turn a photo into a museum-style multi-layer registration stamp — as a finishe
 | ![source](examples/naha-source.jpg) | ![master](examples/naha-master.png) | ![steps](examples/naha-steps.png) |
 | 2025年夏那霸琉球装束体验 | 本例抽中中性（非固定绑定） | 2×2 分版过程 |
 
+### 示例 2 · 童年记忆照 Sample 2 · childhood memory
+
+| 成图 Finished | 步骤图 Steps |
+|---|---|
+| ![dog-master](examples/dog-master.png) | ![dog-steps](examples/dog-steps-oily.png) |
+| 童年与外公的大黄狗（抽中油性 + 方形） | 环境 → 双主体 → 红项圈 → 同色加深 + 文字 |
+
+原片为作者童年私人照片，未随仓库收录；成图底部邮戳用被动印刷语 `PRINTED FROM CHILDHOOD · 2026.09.14`。此例为双主体场景验证：两个前景主体合并在同一印次上墨，末格以「同色油墨再加深一遍」收官（直接要求补勾线会触发模型的去色重绘），文字经 Pillow 代码层修正。
+
+The source is a private childhood photo and is not included in the repo; the postmark uses passive printmaking wording `PRINTED FROM CHILDHOOD · 2026.09.14`. This example verifies the two-subject pipeline: both foreground subjects share one inking, and the final cell closes with a deepening pass of the SAME inks (asking for added keylines instead triggers the model to drain the colors); the text was corrected at the code layer with Pillow.
+
 ## 三种风格 Three styles
 
 | 中性 Neutral | 干性 Dry | 油性 Oily |
@@ -39,6 +50,7 @@ Combine freely: "landscape, oily, finished stamp only" · "dry proof sheet" · "
 | 示例 Example | 模式组合 Mode combo |
 |---|---|
 | 上方三联图 triptych above | proof sheet · 中性 Neutral · 方形 square |
+| 示例 2 双联图 sample 2 · dog | proof sheet · 油性 Oily · 方形 square |
 | 风格表·干性 style table · Dry | finished stamp · 干性 Dry · 方形 square |
 | 风格表·油性 style table · Oily | finished stamp · 油性 Oily · 方形 square |
 
