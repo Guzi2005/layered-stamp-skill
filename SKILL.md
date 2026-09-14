@@ -11,6 +11,17 @@ The sheet mimics a real multi-block print's proofing record: every step cell is 
 
 Work autonomously through all steps; stop only if image generation is unavailable. Regenerate at most once if a quality check fails; otherwise deliver and report deviations honestly.
 
+## Mental model lock (the #1 drift cause — verified 2026-09-14)
+
+The proof sheet shows **INK ON PAPER** — the impression left after pressing, NOT the physical stamp itself. The model's natural tendency is to render "a rubber stamp / a stamp block / a carved seal" as a 3D object: drop shadows, paper thickness, relief, cut-card edges, sticker outlines. This is the source of every paper-cut / cardstock / 3D-relief drift in earlier runs.
+
+Lock the rendering target with this rule in EVERY prompt:
+
+- The image contains **only ink sitting flat on paper**. The stamp press, the rubber block, the carving, the ink pad, the hand — NONE of these exist in the picture.
+- Use impression-level vocabulary: "ink impression on paper", "stamp impression", "ink mark", "ink left by a press", "freshly-inked impression", "museum check-in impression". These anchor the model on the result.
+- AVOID object-level vocabulary in the render description: "a rubber stamp", "a stamp block", "a carved seal", "a stamp object", "the stamp", "the rubber block". These trigger the model to draw the physical object.
+- "Block" / "plate" / "rubber" are FINE when talking about the workflow (Stage A master, chain one cell at a time) — they just must not appear in the picture's visual description.
+
 ## Workflow
 
 1. Inspect the source photo at full useful detail.
@@ -145,7 +156,7 @@ Three styles are available: **中性 (Neutral)** — default; **干性 (Dry)**; 
 Inject the chosen style's paragraph at the start of the master prompt and carry its texture into the chained step cells:
 
 - **干性 (Dry)**: screen-print / dry-roller look. Fills are visibly built from a regular **halftone dot screen** (70-100 lpi) on top of a faint **silkscreen mesh/grid texture**; lots of bare-paper specks and thin streaks where the ink ran out; dusty, muted tones; edges are broken, chalky and slightly starved. No soft watercolor edges, no glossy wetness. Keep shapes, knockout voids and overprint logic exactly as in Neutral.
-- **油性 (Oily)**: a freshly-inked, richly pressed stamp impression — the feel of a museum check-in stamp (打卡印章) pressed with plenty of wet ink at the entrance desk. Fills read DENSE, saturated and evenly covering (vs Neutral's grainy streakiness) — err on the GENEROUS side: more ink is more authentic than less (user 2026-09-14, confirmed on the dog+child print); edges stay crisp and flat like real rubber stamping, with fine roller-grain texture inside each fill. Wet accidents allowed: 1-2 small smudge streaks or fingerprint-like smears at a lower edge where still-wet ink was touched. **NOT an oil painting (verified drift 2026-09-14, three times): "thick paste / pigment accumulation / waxy sheen" vocabulary gets read as oil painting — brushstrokes, impasto, painterly edges. Describe a freshly-inked STAMP instead, and always attach the NOT-list: no brushstrokes, no impasto, no palette knife, no canvas weave, no painterly rendering, no varnish. Keep shapes, knockout voids and overprint logic as in Neutral.** Other verified drift (2026-09-14, dog+child photo): erasing the background behind subjects on the FINISHED master drifts into plastered-putty slabs (刮腻子) — NEVER region-edit the master for knockouts; carve the silhouette voids in the EARLY cells only.
+- **油性 (Oily)**: a freshly-inked, richly pressed IMPRESSION on paper — the look left behind by a museum check-in stamp (打卡印记) pressed with plenty of wet ink at the entrance desk. Fills read DENSE, saturated and evenly covering (vs Neutral's grainy streakiness) — err on the GENEROUS side: more ink is more authentic than less (user 2026-09-14, confirmed on the dog+child print); edges stay crisp and flat, with fine roller-grain texture inside each fill. Wet accidents allowed: 1-2 small smudge streaks or fingerprint-like smears at a lower edge where still-wet ink was touched. **NOT an oil painting (verified drift 2026-09-14, three times): "thick paste / pigment accumulation / waxy sheen" vocabulary gets read as oil painting — brushstrokes, impasto, painterly edges. Describe a freshly-inked IMPRESSION, and always attach the NOT-list: no brushstrokes, no impasto, no palette knife, no canvas weave, no painterly rendering, no varnish. Keep shapes, reserved-paper areas and overprint logic as in Neutral.** Other verified drift (2026-09-14, dog+child photo): erasing the background behind subjects on the FINISHED master drifts into plastered-putty slabs (刮腻子) — NEVER region-edit the master to introduce reserved paper; describe unprinted paper areas in the EARLY cells only.
 
 The style can be combined with orientation; any explicit user override always wins over the roll.
 
