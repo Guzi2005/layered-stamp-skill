@@ -18,8 +18,9 @@ The proof sheet shows **INK ON PAPER** — the impression left after pressing, N
 Lock the rendering target with this rule in EVERY prompt:
 
 - The image contains **only ink sitting flat on paper**. The stamp press, the rubber block, the carving, the ink pad, the hand — NONE of these exist in the picture.
+- **No shape is ever cut out, punched out, or pasted onto another shape** (user correction 2026-09-14, dog+child photo). Ink is **deposited onto the existing paper surface**. The dog's ink lands on top of the ground ink as a translucent multiply layer (where they overlap, the tone reads slightly darker than where the dog sits on bare paper) — there is NO white edge, NO halo, NO separation line between the dog and the ground; the dog is simply where more ink was applied on top. The child's reserved area is where the ground ink simply **did not reach** — bare paper, the same paper as the margins, with no special outline, no white gap, no cut-line.
 - Use impression-level vocabulary: "ink impression on paper", "stamp impression", "ink mark", "ink left by a press", "freshly-inked impression", "museum check-in impression". These anchor the model on the result.
-- AVOID object-level vocabulary in the render description: "a rubber stamp", "a stamp block", "a carved seal", "a stamp object", "the stamp", "the rubber block". These trigger the model to draw the physical object.
+- AVOID object-level vocabulary in the render description: "a rubber stamp", "a stamp block", "a carved seal", "a stamp object", "the stamp", "the rubber block". These trigger the model to draw the physical object. Also avoid "cut out", "punched out", "pasted on top of", "stamped over", "white outline around", "halo around" — anything that frames one shape as a separate piece layered above another.
 - "Block" / "plate" / "rubber" are FINE when talking about the workflow (Stage A master, chain one cell at a time) — they just must not appear in the picture's visual description.
 
 ## Workflow
