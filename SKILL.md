@@ -82,6 +82,8 @@ The single-shot prompt is written strictly in PER-CELL INVENTORY form. Each cell
 
 **Impression-level language only**: the proof sheet shows STAMP IMPRESSIONS on paper, not the carved rubber blocks. When an area is "reserved" for a later inking, what the viewer sees is simply **bare paper with no ink** — not a carved hole, not a cut-out, not a white silhouette with a gap or outline. Describe it as "the ground ink does not cover this area" or "that area remains unprinted paper". Never use "carved void / 凿空 / 镂空 / hole" as a visual descriptor in the prompt, or the model draws a paper-cut edge.
 
+**Two-subject decomposition rule (verified 3/3 runs, 2026-09-14, dog+child photo)**: when the scene has TWO foreground subjects, do NOT give them separate steps — the model cannot hold both subjects in an intermediate cell (environment → +dog → +child → details always drops one subject from the intermediate cells, and detail negatives like "no red collar yet" leak early). Instead exploit the model's copy-the-final tendency: **environment → BOTH subjects in one multi-color inking (flat base colors) → detail inking (collar, accent dashes) → text**. This order also renders the reserved-paper area in impression 1 far more reliably. Trade-off to disclose: the last transition is weak (text only), and an early detail leak (e.g. the collar appearing in impression 2) is still possible — strip it with code QC or accept it.
+
 ```
 [A 2×2 PROOF SHEET on warm off-white paper: exactly FOUR stamp impressions of
 the SAME print arranged in a 2x2 grid, equal size, equal margins, numbered 1 2
