@@ -23,6 +23,16 @@ Lock the rendering target with this rule in EVERY prompt:
 - AVOID object-level vocabulary in the render description: "a rubber stamp", "a stamp block", "a carved seal", "a stamp object", "the stamp", "the rubber block". These trigger the model to draw the physical object. Also avoid "cut out", "punched out", "pasted on top of", "stamped over", "white outline around", "halo around" — anything that frames one shape as a separate piece layered above another.
 - "Block" / "plate" / "rubber" are FINE when talking about the workflow (Stage A master, chain one cell at a time) — they just must not appear in the picture's visual description.
 
+## Overprint / 叠印机制
+
+This is a hard color-behavior rule for every cell. Violating it produces the two most common failure modes seen in early runs: white outlines around figures ("cut-out / pasted" look) and watercolor-like soft edges where two inks meet.
+
+1. **Across steps -> translucent multiply**: when the ink of a later step lands on top of an earlier step, the combined area reads **darker and richer** than either ink alone. Use phrasing like "translucent ink deposited on top", "where it crosses earlier ink the tone deepens", "real overprint". Never describe it as "pasted over", "placed on top as a separate piece", or "white gap separating layers".
+2. **Within one step -> butt/knockout only**: colors printed in the SAME pull do not mix. They either meet edge-to-edge (butt) or one shape leaves unprinted paper for another (knockout). Within a single impression, a color has one flat value across its entire area.
+3. **No white rim / halo / cut-line**: the boundary between any two inks or between ink and bare paper is simply where one ink ends. There is NO white outline, NO luminous halo, NO cut-card separation, NO gap, NO bevel. If the prompt keeps producing thin pale edges, explicitly add: "where two inks meet they touch directly; the edge is just the end of one color and the start of another".
+4. **Bare paper is NOT white ink**: the only place bare paper shows is where ink was never deposited. It is never a "white shape" or "white void" layered above another color. Describe it as "unprinted paper", "area the ink did not reach", or "paper margin".
+5. **Carrying figures forward means preserving their ink**: if the dog appears in cell 2, the same dog ink must remain visible and unchanged in cell 3 and cell 4. It is not redrawn, not re-outlined, not framed again. The later cell simply has additional ink on top of it.
+
 ## Workflow
 
 1. Inspect the source photo at full useful detail.
