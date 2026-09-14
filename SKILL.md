@@ -33,6 +33,22 @@ This is a hard color-behavior rule for every cell. Violating it produces the two
 4. **Bare paper is NOT white ink**: the only place bare paper shows is where ink was never deposited. It is never a "white shape" or "white void" layered above another color. Describe it as "unprinted paper", "area the ink did not reach", or "paper margin".
 5. **Carrying figures forward means preserving their ink**: if the dog appears in cell 2, the same dog ink must remain visible and unchanged in cell 3 and cell 4. It is not redrawn, not re-outlined, not framed again. The later cell simply has additional ink on top of it.
 
+## Code-layer QC / 代码层品控
+
+Prompt engineering alone cannot force the image generator to obey the "no white rim" and "no cut-out" rules (verified 2026-09-14 on the dog+child photo). Therefore **every generated sheet must go through a code-level quality pass** before delivery. Code is allowed to alter the generated pixels for cleanup; it is NOT allowed to synthesize the print itself.
+
+Run `python scripts/strip_rim.py <input.png> <output.png>` after generation:
+
+- Detects bright gray-ish pixels that sit next to dark ink (the classic AI-generated white outline).
+- Replaces them with the local median of non-rim neighbors.
+- Tuned defaults: `bright_min=230`, `rb_max=15` (cooler than warm paper), `dark_dilate=5`.
+
+Also perform these post-generation fixes in code when needed:
+
+- **Watermark fill**: the bottom-right corner often carries a platform watermark. Fill it row-by-row using the paper color sampled immediately to the left of the watermark band plus small noise. Never sample from a distant corner.
+- **Text repair**: if the generated text is truncated (e.g. "PRINTED FROM CHIL" instead of "PRINTED FROM CHILDHOOD"), erase the truncated band and redraw the intended text with Pillow in vintage postal capitals.
+- **Numerals**: if the generated sheet drops the 1/2/3/4 numerals, add them with Pillow (Times bold, just above-left of each cell).
+
 ## Workflow
 
 1. Inspect the source photo at full useful detail.
