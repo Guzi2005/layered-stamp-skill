@@ -16,22 +16,22 @@ Turn a photo into a museum-style multi-layer registration stamp — as a finishe
 | ![dog-source](examples/dog-source.jpg) | ![dog-master](examples/dog-master.png) | ![dog-steps](examples/dog-steps-oily.png) |
 | 童年与外公的大黄狗（私人照片） | 抽中油性 + 方形 | 环境 → 双主体 → 红项圈 → 同色加深 + 文字 |
 
-成图底部邮戳用被动印刷语 `PRINTED FROM CHILDHOOD · 2026.09.14`。此例为双主体场景验证：两个前景主体合并在同一印次上墨，末格以「同色油墨再加深一遍」收官（直接要求补勾线会触发模型的去色重绘），文字经 Pillow 代码层修正。
+成图底部邮戳用被动印刷语 `PRINTED FROM CHILDHOOD · 2026.09.14`。此例为双主体场景验证：两个前景主体合并在同一印次上墨，末格以「同色油墨再加深一遍」收官（直接要求补勾线会触发模型的去色重绘），文字经 Pillow 代码层修正。此例的中性/干性/油性三枚成品见上方「三种风格」表格。
 
-三种墨性形态 Style variants（同一母版换墨性，构图锚定不变）：
-
-| 中性 Neutral | 干性 Dry | 油性 Oily |
-|---|---|---|
-| ![dog-neutral](examples/dog-style-neutral.png) | ![dog-dry](examples/dog-style-dry.png) | ![dog-oily](examples/dog-master.png) |
-
-The postmark uses passive printmaking wording `PRINTED FROM CHILDHOOD · 2026.09.14`. This example verifies the two-subject pipeline: both foreground subjects share one inking, and the final cell closes with a deepening pass of the SAME inks (asking for added keylines instead triggers the model to drain the colors); the text was corrected at the code layer with Pillow. The style variants restyle the same master while the composition stays anchored.
+The postmark uses passive printmaking wording `PRINTED FROM CHILDHOOD · 2026.09.14`. This example verifies the two-subject pipeline: both foreground subjects share one inking, and the final cell closes with a deepening pass of the SAME inks (asking for added keylines instead triggers the model to drain the colors); the text was corrected at the code layer with Pillow. See the "Three styles" table above for this example's Neutral / Dry / Oily variants.
 
 ## 三种风格 Three styles
 
-| 中性 Neutral | 干性 Dry | 油性 Oily |
-|---|---|---|
-| ![neutral](examples/naha-master.png) | ![dry](examples/naha-style-dry.png) | ![oily](examples/naha-style-oily.png) |
-| **默认**。半透明橡皮章墨、硬边、轻微叠印、颗粒纹理。Translucent rubber-stamp ink, hard edges, light overprint, grain. | **更干**。网点/丝网网格、明显缺墨、干辊留白、边缘枯涩。Halftone dots + screen mesh, ink-starved streaks, broken edges. | **更油**。博物馆打卡印章那种刚上足墨、压得实的浓墨覆盖，带 1-2 处未干抹开的湿墨拖痕；不是油画、没有水彩晕边。Freshly-inked check-in stamp: dense rich coverage, crisp flat stamp edges, 1-2 wet smudge streaks; not an oil painting, no watercolor halo. |
+两个案例各按三种墨性各出一枚成品，方便横向对比。Both examples rendered in all three ink characters for side-by-side comparison.
+
+| 示例 Example | 中性 Neutral | 干性 Dry | 油性 Oily |
+|---|---|---|---|
+| **那霸琉球装束** Naha | ![neutral](examples/naha-master.png) | ![dry](examples/naha-style-dry.png) | ![oily](examples/naha-style-oily.png) |
+| **童年大黄狗** Dog | ![dog-neutral](examples/dog-style-neutral.png) | ![dog-dry](examples/dog-style-dry.png) | ![dog-oily](examples/dog-master.png) |
+
+- **中性 Neutral（默认）**：半透明橡皮章墨、硬边、轻微叠印、颗粒纹理。Translucent rubber-stamp ink, hard edges, light overprint, grain.
+- **干性 Dry**：网点/丝网网格、明显缺墨、干辊留白、边缘枯涩。Halftone dots + screen mesh, ink-starved streaks, broken edges.
+- **油性 Oily**：博物馆打卡印章那种刚上足墨、压得实的浓墨覆盖，带 1-2 处未干抹开的湿墨拖痕；不是油画、没有水彩晕边。Freshly-inked check-in stamp: dense rich coverage, crisp flat stamp edges, 1-2 wet smudge streaks; not an oil painting, no watercolor halo.
 
 ## 可用机制 What you can specify
 
