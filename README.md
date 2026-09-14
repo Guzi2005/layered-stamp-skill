@@ -50,7 +50,7 @@ Combine freely: "landscape, oily, finished stamp only" · "dry proof sheet" · "
 | 示例 Example | 模式组合 Mode combo |
 |---|---|
 | 上方三联图 triptych above | proof sheet · 中性 Neutral · 方形 square |
-| 示例 2 双联图 sample 2 · dog | proof sheet · 油性 Oily · 方形 square |
+| 示例 2 三联图 sample 2 · dog | proof sheet · 油性 Oily · 方形 square |
 | 风格表·干性 style table · Dry | finished stamp · 干性 Dry · 方形 square |
 | 风格表·油性 style table · Oily | finished stamp · 油性 Oily · 方形 square |
 
