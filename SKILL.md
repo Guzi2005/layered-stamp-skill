@@ -115,6 +115,7 @@ Chain mode still drifts on figures — use Mode A the moment a foreground subjec
 3. **Text discipline**: only the last cell carries text. If cells 1-3 contain text, the "ABSOLUTELY NO text" line was not strong enough — move it to the top of every cell section.
 4. **Single-image per cell**: each cell shows ONE impression. If any cell returns a 2×2 sub-grid, the prompt triggered "before/after" or "variation" mode; prepend "no sub-panels, no variations" at the very top of the prompt.
 5. **Style consistency**: ink character (Neutral / Dry / Oily) reads the same in every cell.
+6. **White rim / cut-line around figures (verified 2026-09-14, dog+child photo)**: even with "NO white edge / NO halo / NO cut-line" instructions, the model tends to draw a thin light rim around newly added shapes, making them look pasted on. If this appears, the prompt's edge framing was still too object-like. Reframe the edge as a process: "the dog's brown ink simply ends and the ground ink continues right up to that edge from below", "the two inks butt at a shared boundary with no paper showing between them", "the shape is where more ink was deposited, not a separate piece". Add "seamless butting edge" and "no visible boundary line" language. If the rim persists after one regeneration, accept it as a model limitation and note it in the delivery.
 
 ## Sheet layout (the core)
 
